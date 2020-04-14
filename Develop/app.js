@@ -5,12 +5,75 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+// const OUTPUT_DIR = path.resolve(__dirname, "output");
+// const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
+// const render = require("./lib/htmlRenderer");
+const startInfo = {}
+let firstStart = 1;
+//handles first start
+if (firstStart) {
 
-
+    const questions = [
+        {
+            type: "input",
+            message: "Please Enter Your Team's Name",
+            name: "Team"
+        },
+        {
+            type: "number",
+            message: "How People Are On Your Team, Besides you?",
+            name: "teamSize"
+        },
+        {
+            type: "input",
+            message: "Enter Manager Name",
+            name: "Mname"
+        },
+        {
+            type: "input",
+            message: "Enter Manager Id",
+            name: "Mid"
+        },
+        {
+            type: "input",
+            message: "Enter Manager Email",
+            name: "Memail"
+        },
+        {
+            type: "input",
+            message: "Enter Manager Office Number",
+            name: "Moffice"
+        },
+    ]
+    promptManager()
+    async function promptManager() {
+        for (let i = 0; i < questions.length; i++) {
+            await inquirer.prompt(questions[i])
+                .then(function (answer) {
+                    //adds the user's answer for each question to startInfo
+                    let key = Object.keys(answer)[0]
+                    console.log(key)
+                    if(key === "teamSize"&& isNaN(answer[key]) ){
+                        console.log("Please Input an Integer for team size");
+                        i--;
+                    }
+                    else if (answer[key] === "") {
+                        console.log("Please Input valid Data");
+                        i--;
+                    }
+                    else if (key.includes("email")&& answer[key].match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+)@(?:[a-z0-9]+)\.(?:[a-z0-9]+)$/g)){
+                        console.log("Please Input valid Email Address");
+                        i--; 
+                    }
+                    else {
+                        startInfo[key] = answer[key];
+                    }
+                })
+        }
+        console.log(startInfo)
+    }
+}
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
