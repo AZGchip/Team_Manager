@@ -197,8 +197,7 @@ function addMember(amount) {
         employeeArray.push(member);
         //if given team size is more than one, runs function again
         if (loop > 1) {
-            loop--;
-            addMember(loop);
+             addMember(--loop);
         }
         else {
             console.log("loop complete")
