@@ -5,7 +5,11 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
-const employeeArray = []
+const bhtml = require("./template")
+const employeeArray = [];
+const managerArray = [];
+const engineerArray = [];
+const internArray = []
 
 // const OUTPUT_DIR = path.resolve(__dirname, "output");
 // const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -78,11 +82,11 @@ if (firstStart) {
         }
         console.log(startInfo)
         let man = new Manager(startInfo.name, startInfo.id, startInfo.email, startInfo.office)
-        employeeArray.push(man)
-        addMember(startInfo.teamSize)
+        managerArray.push(man)
+        addMember(startInfo.teamSize,startInfo.Team)
     }
 }
-function addMember(amount) {
+function addMember(amount,team) {
     //if loop > 1, function runs once
     let loop = 0;
     //changes the value of loop if amount is specified
@@ -135,24 +139,24 @@ function addMember(amount) {
             type: "list",
             message: "What type of team member is being added?",
             name: "job",
-            choices: ["Manager", "Engineer", "Employee", "Intern",new inquirer.Separator(),"Finished Adding Members"]
+            choices: ["Manager", "Engineer", "Employee", "Intern", new inquirer.Separator(), "Finished Adding Members"]
         })
         .then(function ({ job }) {
             let questionArray = []
-            if (job === "Manager") {
-                questionArray = employee.concat(extraQuestion[0])
-            }
-            else if (job === "Engineer") {
+            // if (job === "Manager") {
+            //     questionArray = employee.concat(extraQuestion[0])
+            // }
+             if (job === "Engineer") {
                 questionArray = employee.concat(extraQuestion[1])
             }
             else if (job === "Intern") {
                 questionArray = employee.concat(extraQuestion[2])
             }
-            else if (job === "Finished Adding Members"){
-                return 
+            else if (job === "Finished Adding Members") {
+                return
             }
             else { questionArray = employee }
-            promptTeam(questionArray, job)
+            promptTeam(questionArray, job, team)
         })
 
 
@@ -179,29 +183,37 @@ function addMember(amount) {
                     }
                 })
         }
-        let member;
+        let member = {};
         //Saves new class/subclass according to selected job
         if (job === "Engineer") {
             member = new Engineer(memberInfo.name, memberInfo.id, memberInfo.email, memberInfo.extra);
+            engineerArray.push(member)
         }
         else if (job === "Manager") {
             member = new Manager(memberInfo.name, memberInfo.id, memberInfo.email, memberInfo.extra);
+            managerArray.push(member)
         }
         else if (job === "Intern") {
             member = new Intern(memberInfo.name, memberInfo.id, memberInfo.email, memberInfo.extra);
+            internArray.push(member)
         }
         else {
             member = new Employee(memberInfo.name, memberInfo.id, memberInfo.email);
+            employeeArray.push(member)
         }
-        //pushes member into employee array
-        employeeArray.push(member);
         //if given team size is more than one, runs function again
         if (loop > 1) {
-             addMember(--loop);
+            addMember(--loop);
         }
         else {
+            let template = bhtml.templateMaker(managerArray, engineerArray, employeeArray, internArray,team);
             console.log("loop complete")
-            console.log(employeeArray)
+            fs.writeFile("team.html", template, function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("File saved successfully!");
+            });
         }
     }
 }
