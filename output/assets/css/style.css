@@ -6,6 +6,6 @@ height: 100vh;
 
 }
 body{
-    background-image:url(./assets/Background-Patterns3.jpg);
+    background-image:url(../Background-Patterns3.jpg);
     background-attachment: fixed;
 }
