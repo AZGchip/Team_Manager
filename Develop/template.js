@@ -20,7 +20,7 @@ function templateMaker(manager, engineer, employee, intern, team) {
                     // const extraquest = [s.getOfficeNumber(), s.getGithub(), "", s.getSchool()]
                     if (i === 0) {
                         manTemp += `<div class="row">
-                        <div class="col-4  bg-info border border-dark rounded">
+                        <div class="col-5  bg-info border border-dark rounded mx-auto">
                             <div class="row">
                                 <div class="col-10">
                                     <h1>${s.getName()}</h1>
@@ -28,7 +28,7 @@ function templateMaker(manager, engineer, employee, intern, team) {
                                     <hr>
                                     <ul class="pl-2">
                                         <li>${s.getEmail()}</li>
-                                        <li>Office:${s.officeNumber()}</li>
+                                        <li>Office:${s.getOfficeNumber()}</li>
                                     </ul>
                                 </div>
                                 <div class="col-2">
@@ -125,27 +125,28 @@ function templateMaker(manager, engineer, employee, intern, team) {
 
 <body>
     <div class="row">
-        <div class="col-12">
-            <h1 class="text-center bg-secondary text-light ">${team}</h1>
-        </div>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+    <span class="navbar-brand mb-0 h1">${team}</span>
+  </nav>
     </div>
     <div class="row containter">
-        <div class="col-md-8 mx-auto bg-secondary rounded">
+    
+        <div class="col-md-8 mx-auto bg-secondary rounded mt-5 pt-2" id="back">
             ${manTemp}
             <!-- second row -->
             <div class="row">
                 <!-- column 1 -->
-                <div class="col-md-4">
+                <div class="col-md-4 border-right border-top border-dark">
                     <h1>Employees</h1>
                     ${empTemp}
                 </div>
                 <!-- column 2 -->
-                <div class="col-md-4">
+                <div class="col-md-4 border-right border-top border-dark">
                     <h1>Engineers</h1>
                     ${engTemp}
                 </div>
                 <!-- column 3 -->
-                <div class="col-md-4">
+                <div class="col-md-4 border-top border-dark">
                     <h1>Interns</h1>
                     ${intTemp}
                 </div>

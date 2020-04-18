@@ -141,7 +141,7 @@ function addMember(amount) {
             type: "list",
             message: "What type of team member is being added?",
             name: "job",
-            choices: ["Manager", "Engineer", "Employee", "Intern", new inquirer.Separator(), "Finished Adding Members"]
+            choices: ["Engineer", "Employee", "Intern", new inquirer.Separator(), "Finished Adding Members"]
         })
         .then(function ({ job }) {
             let questionArray = []
@@ -155,6 +155,7 @@ function addMember(amount) {
                 questionArray = employee.concat(extraQuestion[2])
             }
             else if (job === "Finished Adding Members") {
+                buildHtml()
                 return
             }
             else { questionArray = employee }
@@ -208,7 +209,12 @@ function addMember(amount) {
             addMember(--loop);
         }
         else {
-            let template = bhtml.templateMaker(managerArray, engineerArray, employeeArray, internArray,team);
+            buildHtml()
+        }
+    }
+}
+function buildHtml(){
+    let template = bhtml.templateMaker(managerArray, engineerArray, employeeArray, internArray,team);
             console.log("loop complete")
             fs.writeFile("team.html", template, function (err) {
                 if (err) {
@@ -216,10 +222,7 @@ function addMember(amount) {
                 }
                 console.log("File saved successfully!");
             });
-        }
-    }
 }
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
