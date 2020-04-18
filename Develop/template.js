@@ -1,8 +1,5 @@
-const Employee = require("./lib/Employee");
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-function templateMaker(manager, engineer, employee, intern,team) {
+
+function templateMaker(manager, engineer, employee, intern, team) {
 
     const arguments = [manager, engineer, employee, intern]
     // console.log(arguments)
@@ -10,7 +7,7 @@ function templateMaker(manager, engineer, employee, intern,team) {
     let engTemp = ``;
     let empTemp = ``;
     let intTemp = ``;
-   
+
     for (let i = 0; i < arguments.length; i++) {
         let selected = arguments[i]
 
@@ -31,7 +28,7 @@ function templateMaker(manager, engineer, employee, intern,team) {
                                     <hr>
                                     <ul class="pl-2">
                                         <li>${s.getEmail()}</li>
-                                        <li>Office:</li>
+                                        <li>Office:${s.officeNumber()}</li>
                                     </ul>
                                 </div>
                                 <div class="col-2">
@@ -107,9 +104,9 @@ function templateMaker(manager, engineer, employee, intern,team) {
 
         }
     }
-    
-    
-    
+
+
+
     return `
 <!DOCTYPE html>
 <html lang="en">

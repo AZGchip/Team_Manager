@@ -10,6 +10,7 @@ const employeeArray = [];
 const managerArray = [];
 const engineerArray = [];
 const internArray = []
+let team = "";
 
 // const OUTPUT_DIR = path.resolve(__dirname, "output");
 // const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -24,7 +25,7 @@ if (firstStart) {
         {
             type: "input",
             message: "Please Enter Your Team's Name",
-            name: "Team"
+            name: "team"
         },
         {
             type: "number",
@@ -82,11 +83,12 @@ if (firstStart) {
         }
         console.log(startInfo)
         let man = new Manager(startInfo.name, startInfo.id, startInfo.email, startInfo.office)
+        team = startInfo.team
         managerArray.push(man)
-        addMember(startInfo.teamSize,startInfo.Team)
+        addMember(startInfo.teamSize,)
     }
 }
-function addMember(amount,team) {
+function addMember(amount) {
     //if loop > 1, function runs once
     let loop = 0;
     //changes the value of loop if amount is specified
