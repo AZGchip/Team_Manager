@@ -5,7 +5,7 @@
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
       
       
-This program prompts and gets info from the user to generate a organized list of the members of a given team. the program accepts one manager and any number of employees, interns, and engineers. the end result is saved as an html in the output folder.
+This program prompts and gets info from the user to generate a organized list of the members of a given team. the program accepts one manager and any number of employees, interns, and engineers. The end result is saved as an html in the output folder.
 
 ## Table Of Contents
 * [Installation](#Installation)
@@ -15,15 +15,15 @@ This program prompts and gets info from the user to generate a organized list of
 
       
 ## <a name ="Installation"></a> Installation
-this program requires inquirer, node, and jest.
+This program requires inquirer, node, and jest.
 
       
 ## <a name ="Usage"></a> Usage
-using 'node app.js' in the terminal with the folder selcted will run the program. Every field must be filled in order to continue to the next question. email prompts must be lowercase and numbers cannot be used after the '@'. 
+Using 'node app.js' in the terminal with the folder selcted will run the program. Every field must be filled in order to continue to the next question. Email prompts must be lowercase and numbers cannot be used after the '@'. 
 
       
 ## <a name ="Tests"></a> Tests
-uses jest to test object classes 
+Uses jest to test object class methods
 
       
 ## <a name ="contact"></a> Contact me
