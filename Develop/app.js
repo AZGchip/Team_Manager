@@ -12,10 +12,7 @@ const engineerArray = [];
 const internArray = []
 let team = "";
 
-// const OUTPUT_DIR = path.resolve(__dirname, "output");
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-// const render = require("./lib/htmlRenderer");
 const startInfo = {}
 let firstStart = 1;
 //handles first start
@@ -81,11 +78,11 @@ if (firstStart) {
                     }
                 })
         }
-        console.log(startInfo)
+
         let man = new Manager(startInfo.name, startInfo.id, startInfo.email, startInfo.office)
         team = startInfo.team
         managerArray.push(man)
-        addMember(startInfo.teamSize,)
+        addMember(startInfo.teamSize)
     }
 }
 function addMember(amount) {
@@ -145,10 +142,7 @@ function addMember(amount) {
         })
         .then(function ({ job }) {
             let questionArray = []
-            // if (job === "Manager") {
-            //     questionArray = employee.concat(extraQuestion[0])
-            // }
-             if (job === "Engineer") {
+            if (job === "Engineer") {
                 questionArray = employee.concat(extraQuestion[1])
             }
             else if (job === "Intern") {
@@ -213,13 +207,13 @@ function addMember(amount) {
         }
     }
 }
-function buildHtml(){
-    let template = bhtml.templateMaker(managerArray, engineerArray, employeeArray, internArray,team);
-            console.log("loop complete")
-            fs.writeFile("../output/team.html", template, function (err) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("File saved successfully!");
-            });
+function buildHtml() {
+    let template = bhtml.templateMaker(managerArray, engineerArray, employeeArray, internArray, team);
+    console.log("loop complete")
+    fs.writeFile("../output/team.html", template, function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("File saved successfully!");
+    });
 }

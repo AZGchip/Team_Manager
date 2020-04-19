@@ -2,12 +2,11 @@
 function templateMaker(manager, engineer, employee, intern, team) {
 
     const arguments = [manager, engineer, employee, intern]
-    // console.log(arguments)
     let manTemp = ``;
     let engTemp = ``;
     let empTemp = ``;
     let intTemp = ``;
-
+//runs through given data and adds templates together
     for (let i = 0; i < arguments.length; i++) {
         let selected = arguments[i]
 
@@ -15,9 +14,8 @@ function templateMaker(manager, engineer, employee, intern, team) {
             for (let x = 0; x < selected.length; x++) {
                 if (selected[x] !== undefined) {
                     let s = selected[x];
-                    console.log(s)
-                    // console.log(s[0])
-                    // const extraquest = [s.getOfficeNumber(), s.getGithub(), "", s.getSchool()]
+                   
+                    //manager
                     if (i === 0) {
                         manTemp += `<div class="row">
                         <div class="col-5  bg-info border border-dark rounded mx-auto">
@@ -40,6 +38,7 @@ function templateMaker(manager, engineer, employee, intern, team) {
                         
                     </div>`
                     }
+                    //engineer
                     if (i === 1) {
                         engTemp += `
                         <div class="col-11  bg-info border border-dark rounded">
@@ -60,6 +59,7 @@ function templateMaker(manager, engineer, employee, intern, team) {
                             </div>
                         </div>
                         `}
+                        //employee
                     if (i === 2) {
                         empTemp += `
                         <div class="col-11  bg-info border border-dark rounded">
@@ -79,6 +79,7 @@ function templateMaker(manager, engineer, employee, intern, team) {
                             </div>
                         </div>
                         `}
+                        //intern
                     if (i === 3) {
                         intTemp += `
                         <div class="col-11  bg-info border border-dark rounded">
